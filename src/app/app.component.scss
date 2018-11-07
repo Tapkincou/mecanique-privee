@@ -1,0 +1,27 @@
+$menubar-size: 10%;
+$font-stack: Helvetica, sans-serif;
+
+.menubar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: $menubar-size;
+  z-index: 1;
+}
+
+.sidenav {
+    position: absolute;
+    top: $menubar-size;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+    z-index: 1;
+  }
+
+  .bottomRightButton {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    z-index: 5;
+  }

@@ -21,19 +21,19 @@
       <mat-menu #menuProduits="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>Item 2</button>
-      </mat-menu>    
+      </mat-menu>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav" >
     <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
     <mat-sidenav-content>Main content
-      <app-bill-view></app-bill-view>
+      <app-bill-view #appBillView *ngIf="isCurrentView(this)"></app-bill-view>
 
     </mat-sidenav-content>
   </mat-sidenav-container>
 
 </div>
 
-<button mat-raised-button class="bottomRightButton">Nouveau devis</button>
+<button mat-raised-button class="bottomRightButton">Nouvelle facture</button>
 
 <router-outlet></router-outlet>

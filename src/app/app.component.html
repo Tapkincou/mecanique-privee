@@ -2,7 +2,7 @@
 
 <div>
   <mat-toolbar class="menubar">Mécanique Privée
-      <button mat-button [matMenuTriggerFor]="menuClients">Clients</button>
+      <button mat-button (click)="changeCurrentView('app-customer-view')" [matMenuTriggerFor]="menuClients">Clients</button>
       <mat-menu #menuClients="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>lalala</button>
@@ -27,8 +27,8 @@
   <mat-sidenav-container class="sidenav" >
     <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
     <mat-sidenav-content>Main content
-      <app-bill-view #appBillView *ngIf="isCurrentView(this)"></app-bill-view>
-
+      <app-bill-view *ngIf="isCurrentView('app-bill-view')"></app-bill-view>
+      <app-customer-view  *ngIf="isCurrentView('app-customer-view')"></app-customer-view>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

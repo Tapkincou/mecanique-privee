@@ -30,7 +30,7 @@ export class AppComponent {
 
   public isCurrentView(view) {
     console.log(view);
-    return true;
+    return (this.currentview === view ? true : false);
   }
 
 }

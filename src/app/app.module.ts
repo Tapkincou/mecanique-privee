@@ -8,7 +8,6 @@ import { BillViewComponent } from './bill-view/bill-view.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { EstimateViewComponent } from './estimate-view/estimate-view.component';
 import { ProductViewComponent } from './product-view/product-view.component';
-import { ChangeViewDirective } from './change-view.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { ChangeViewDirective } from './change-view.directive';
     CustomerViewComponent,
     EstimateViewComponent,
     ProductViewComponent,
-    ChangeViewDirective
   ],
   imports: [
     BrowserModule,

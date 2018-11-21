@@ -17,20 +17,21 @@ export class AppComponent {
   private PRODUCT_VIEW = 'app-product-view';
   private CUSTOMER_VIEW = 'app-customer-view';
   private ESTIMATE_VIEW = 'app-estimate-view';
+  private BILL_VIEW = 'app-bill-view';
   constructor (public viewContainerRef: ViewContainerRef) {
-  //  this.currentview = this.BILL_VIEW;
-    this.showBillView = true;
-  //  console.log(this.BILL_VIEW);
+    this.currentview = this.BILL_VIEW;
   console.log('coucou');
   }
 
-  public changeCurrentView(view) {
-      this.currentview = view;
+  public changeCurrentView(view: string) {
+      if (this.currentview !== view) {
+        this.currentview = view;
+      }
   }
 
   public isCurrentView(view) {
     console.log(view);
-    return true;
+    return this.currentview === view ? true : false;
   }
 
 }

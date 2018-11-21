@@ -27,8 +27,10 @@
   <mat-sidenav-container class="sidenav" >
     <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
     <mat-sidenav-content>Main content
-      <app-bill-view #appBillView *ngIf="isCurrentView(this)"></app-bill-view>
-
+      <app-bill-view #billView *ngIf="isCurrentView(billView.name)"></app-bill-view>
+      <app-customer-view #customerView *ngIf="isCurrentView(customerView.name)"></app-customer-view>
+      <app-estimate-view #estimateView *ngIf="isCurrentView(estimateView.name)"></app-estimate-view>
+      <app-product-view #productView *ngIf="isCurrentView(productView.name)"></app-product-view>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstimateViewComponent implements OnInit {
 
+  name = 'app-estimate-view';
+
   constructor() { }
 
   ngOnInit() {

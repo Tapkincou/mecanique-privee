@@ -7,18 +7,18 @@
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>lalala</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="menuProduits">Produits</button>
+      <button mat-button (click)="changeCurrentView('app-product-view')" [matMenuTriggerFor]="menuProduits">Produits</button>
       <mat-menu #menuProduits="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>Item 2</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="menuClients">Facture</button>
-      <mat-menu #menuClients="matMenu">
+      <button mat-button (click)="changeCurrentView('app-bill-view')" [matMenuTriggerFor]="menuFactures">Facture</button>
+      <mat-menu #menuFactures="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>lalala</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="menuProduits">Devis</button>
-      <mat-menu #menuProduits="matMenu">
+      <button mat-button (click)="changeCurrentView('app-estimate-view')" [matMenuTriggerFor]="menuEstimates">Devis</button>
+      <mat-menu #menuEstimates="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>Item 2</button>
       </mat-menu>
@@ -27,10 +27,11 @@
   <mat-sidenav-container class="sidenav" >
     <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
     <mat-sidenav-content>Main content
-      <app-bill-view #billView *ngIf="isCurrentView(billView.name)"></app-bill-view>
-      <app-customer-view #customerView *ngIf="isCurrentView(customerView.name)"></app-customer-view>
-      <app-estimate-view #estimateView *ngIf="isCurrentView(estimateView.name)"></app-estimate-view>
-      <app-product-view #productView *ngIf="isCurrentView(productView.name)"></app-product-view>
+        <app-bill-view #billView  *ngIf="isCurrentView('app-bill-view')"></app-bill-view>
+        <!-- billView.name -->
+        <app-customer-view #customerView *ngIf="isCurrentView('app-customer-view')"></app-customer-view>
+        <app-estimate-view #estimateView *ngIf="isCurrentView('app-estimate-view')"></app-estimate-view>
+        <app-product-view #productView *ngIf="isCurrentView('app-product-view')"></app-product-view>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

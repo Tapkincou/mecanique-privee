@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BillViewComponent implements OnInit {
 
 
-  name = 'app-bill-view';
+  public name = 'app-bill-view';
 
   constructor() { }
 

@@ -10,17 +10,18 @@ import { BillViewComponent } from './bill-view/bill-view.component';
 export class AppComponent {
   title = 'mecanique-privee';
 
-  public showBillView;
-
+  private PRODUCT_VIEW = 'app-product-view';
+  private CUSTOMER_VIEW = 'app-customer-view';
+  private ESTIMATE_VIEW = 'app-estimate-view';
+  private BILL_VIEW = 'app-bill-view';
  // @ViewChild('appBillView', { read: ViewContainerRef }) BILL_VIEW;
   public currentView;
   // private BILL_VIEW = 'app-bill-view';
-  public PRODUCT_VIEW = 'app-product-view';
-  public CUSTOMER_VIEW = 'app-customer-view';
-  public ESTIMATE_VIEW = 'app-estimate-view';
-  public BILL_VIEW = 'app-bill-view';
+
   constructor (public viewContainerRef: ViewContainerRef) {
+
     this.currentView = this.BILL_VIEW;
+
   console.log('coucou');
   }
 
@@ -36,5 +37,9 @@ export class AppComponent {
     console.log('is current ' + view);
     return (this.currentView === view ? true : false);
   }
+
+  public getCurrentView = () => this.currentView;
+
+
 
 }

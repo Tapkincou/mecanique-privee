@@ -8,21 +8,19 @@ import { BillViewComponent } from './bill-view/bill-view.component';
 })
 
 export class AppComponent {
+
+  public readonly PRODUCT_VIEW: string = 'app-product-view';
+  public readonly CUSTOMER_VIEW: string = 'app-customer-view';
+  public readonly ESTIMATE_VIEW: string = 'app-estimate-view';
+  public readonly BILL_VIEW: string = 'app-bill-view';
   title = 'mecanique-privee';
 
-  private PRODUCT_VIEW = 'app-product-view';
-  private CUSTOMER_VIEW = 'app-customer-view';
-  private ESTIMATE_VIEW = 'app-estimate-view';
-  private BILL_VIEW = 'app-bill-view';
  // @ViewChild('appBillView', { read: ViewContainerRef }) BILL_VIEW;
   public currentView;
   // private BILL_VIEW = 'app-bill-view';
 
   constructor (public viewContainerRef: ViewContainerRef) {
-
     this.currentView = this.BILL_VIEW;
-
-  console.log('coucou');
   }
 
   public changeCurrentView(view: string) {
@@ -39,7 +37,6 @@ export class AppComponent {
   }
 
   public getCurrentView = () => this.currentView;
-
 
 
 }

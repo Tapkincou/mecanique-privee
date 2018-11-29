@@ -1,5 +1,8 @@
 import { Component, ViewContainerRef, ViewChild } from '@angular/core';
-import { BillViewComponent } from './bill-view/bill-view.component';
+import { ProductBusiness } from './business/product-business';
+import { BillBusiness } from './business/bill-business';
+import { EstimateBusiness } from './business/estimate-business';
+import { CustomerBusiness } from './business/customer-business';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +18,16 @@ export class AppComponent {
   public readonly BILL_VIEW: string = 'app-bill-view';
   title = 'mecanique-privee';
 
- // @ViewChild('appBillView', { read: ViewContainerRef }) BILL_VIEW;
-  public currentView;
-  // private BILL_VIEW = 'app-bill-view';
+  private currentView;
+
+  private productBusiness;
 
   constructor (public viewContainerRef: ViewContainerRef) {
+
     this.currentView = this.BILL_VIEW;
+    this.productBusiness = new ProductBusiness();
+
+
   }
 
   public changeCurrentView(view: string) {

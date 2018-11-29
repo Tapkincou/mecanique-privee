@@ -37,6 +37,6 @@
 
 </div>
 
-<button mat-raised-button class="bottomRightButton">Nouvelle facture</button>
+<button mat-raised-button (click)="changeCurrentView('app-bill-view')" class="bottomRightButton">Nouvelle facture</button>
 
 <router-outlet></router-outlet>

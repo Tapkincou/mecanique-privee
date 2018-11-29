@@ -4,10 +4,11 @@ import { MatMenuModule, MatButtonModule, MatToolbarModule, MatSidenavModule } fr
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BillViewComponent } from './bill-view/bill-view.component';
-import { CustomerViewComponent } from './customer-view/customer-view.component';
-import { EstimateViewComponent } from './estimate-view/estimate-view.component';
-import { ProductViewComponent } from './product-view/product-view.component';
+import { BillViewComponent } from './view/bill-view/bill-view.component';
+import { CustomerViewComponent } from './view/customer-view/customer-view.component';
+import { EstimateViewComponent } from './view/estimate-view/estimate-view.component';
+import { ProductViewComponent } from './view/product-view/product-view.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
     MatToolbarModule,
     MatButtonModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

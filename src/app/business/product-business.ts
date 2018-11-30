@@ -1,7 +1,16 @@
+import { ProductController } from '../controller/product-controller';
+import { Product } from '../data-object/product';
+
 export class ProductBusiness {
 
-  public fetchAllProduct() {
-    return 0;
+  private productController = new ProductController();
+
+  public getProducts() {
+   return this.productController.selectAllProducts();
+  }
+
+  public getProductsById(id: number) {
+   return <Product>this.productController.selectProductById(id);
   }
 
 }

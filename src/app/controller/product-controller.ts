@@ -1,12 +1,13 @@
-import { Product } from "../data-object/product";
+import { Product } from '../data-object/product';
 
 export class ProductController {
-
 
   /**
    *
    */
   public selectAllProducts() {
+
+
     return this.bouchonSelectAllProducts();
     // TODO
   }
@@ -21,7 +22,7 @@ export class ProductController {
   }
 
   private bouchonSelectAllProducts() {
-    return [
+    return <Product[]><any>[
       { id: 1, name: 'article1', cost: 10, type: 'type1' },
       { id: 2, name: 'article2', cost: 20, type: 'type2' },
       { id: 3, name: 'article3', cost: 30, type: 'type1' },

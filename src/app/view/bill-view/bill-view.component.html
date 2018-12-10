@@ -1,3 +1,16 @@
 <p>
   bill-view works!
 </p>
+
+
+
+<div *ngFor="let bill of bills">
+  coucou
+  <h2>
+    Facture de {{bill.customer.firstName}} {{bill.customer.lastName}}
+  </h2>
+  <span>
+    {{bill.products[0].product.name}}
+    {{bill.products[0].product.cost}}
+  </span>
+</div>

@@ -1,7 +1,6 @@
 import { Component, ViewContainerRef, ViewChild } from '@angular/core';
 import { ProductBusiness } from './business/product-business';
 import { BillBusiness } from './business/bill-business';
-import { EstimateBusiness } from './business/estimate-business';
 import { CustomerBusiness } from './business/customer-business';
 
 @Component({
@@ -31,15 +30,15 @@ export class AppComponent {
   }
 
   public changeCurrentView(view: string) {
-    console.log('changeCurrentView called : ' + view + ' / current =' + this.currentView);
+    // console.log('changeCurrentView called : ' + view + ' / current =' + this.currentView);
       if (this.currentView !== view) {
         this.currentView = view;
-        console.log('view changed ' + view);
+        // console.log('view changed ' + view);
       }
   }
 
   public isCurrentView(view) {
-    console.log('is current ' + view);
+    // console.log('is current ' + view);
     return (this.currentView === view ? true : false);
   }
 

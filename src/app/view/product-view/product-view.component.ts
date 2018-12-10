@@ -1,4 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { ProductBusiness } from 'src/app/business/product-business';
+import { Product } from 'src/app/data-object/product';
+import { Subscriber, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-product-view',
@@ -7,11 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductViewComponent implements OnInit {
 
-  name = 'app-product-view';
+  public name = 'app-product-view';
+  private productBusiness = new ProductBusiness();
+  private products$: Observable<Product[]>;
+  private productsSubject: BehaviorSubject<Product[]> = new  BehaviorSubject<Product[]>(this.productBusiness.getProducts());
 
-  constructor() { }
+  public products: Array<Product>;
+  constructor() {
+    this.products$ = this.productsSubject.asObservable();
+  }
 
   ngOnInit() {
+    console.log('init ' + name);
+    this.products$.subscribe( products => this.products = products);
   }
 
 }

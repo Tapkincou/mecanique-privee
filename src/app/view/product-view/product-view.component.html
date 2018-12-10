@@ -1,3 +1,14 @@
 <p>
   product-view works!
 </p>
+
+<div *ngFor="let product of products">
+
+  <h2>
+    {{product.name}}
+  </h2>
+  <span>
+    {{product.cost}}
+    {{product.type}}
+  </span>
+</div>

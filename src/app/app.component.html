@@ -2,11 +2,7 @@
 
 <div>
   <mat-toolbar class="menubar">Mécanique Privée
-      <button mat-button (click)="changeCurrentView('app-customer-view')" [matMenuTriggerFor]="menuClients">Clients</button>
-      <mat-menu #menuClients="matMenu">
-        <button mat-menu-item>Nouveau</button>
-        <button mat-menu-item>lalala</button>
-      </mat-menu>
+      <button (click)="changeCurrentView('app-customer-view')">Clients</button>
       <button mat-button (click)="changeCurrentView('app-product-view')" [matMenuTriggerFor]="menuProduits">Produits</button>
       <mat-menu #menuProduits="matMenu">
         <button mat-menu-item>Nouveau</button>

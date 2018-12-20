@@ -1,5 +1,6 @@
-import { PouchDB } from 'pouchdb';
-import { Element } from '@angular/compiler';
+
+import PouchDB from 'pouchdb';
+
 export abstract class Database {
 
     constructor(name: string) {

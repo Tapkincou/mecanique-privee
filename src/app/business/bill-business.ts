@@ -9,7 +9,7 @@ export class BillBusiness {
     /**
      *
      */
-    private billController = new BillController();
+    private billController = new BillController('billDatabase');
 
     /**
      *

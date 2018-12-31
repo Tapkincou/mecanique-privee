@@ -24,13 +24,14 @@ export abstract class Database {
 
   constructor(name: string) {
     this.databaseName = name;
+    this.initDatabase();
   }
 
 /**
  * Initialize the database.
  * @param name Database name
  */
-  public initDatabase(): Boolean {
+  public initDatabase() {
       console.log('init database ' + this.databaseName);
       this.database = new PouchDB(this.databaseName);
       this.remoteDatabase = new PouchDB('http://localhost:5984/' + this.databaseName);
@@ -44,18 +45,19 @@ export abstract class Database {
 
         this.database.info().then( (info: any) => {
           console.log(info);
-          return true;
           }).catch((error) => {
             console.log('Error on getInfo :');
             console.log(error);
+            throw(error);
             // yay, we're in sync!
-        }).on('error', function (error) {
-          console.log('Error on replication :');
-          console.log(error);
-          // boo, we hit an error!
+      }).on('error', function (error) {
+        console.log('Error on replication :');
+        console.log(error);
+        throw(error);
+        // boo, we hit an error!
       });
     });
-    return false;
+
   }
 
   /**
@@ -121,10 +123,15 @@ export abstract class Database {
         console.log(documents);
         return documents;
     }).catch( (error) => {
-      // handle any errors whitin the then.
-      console.log('error 2::');
-      console.log(error);
-      throw error;
+      if (Database.ERROR_DATA_NOT_FOUND === error.name) {
+        console.log('not found');
+        // not found
+      } else {
+        // other error
+        console.log('error ::');
+        console.log(error);
+        throw error;
+      }
     });
   }
 

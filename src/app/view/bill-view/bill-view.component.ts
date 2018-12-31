@@ -25,15 +25,19 @@ export class BillViewComponent implements OnInit, OnDestroy {
     // this.initDatabase$ = this.initDatabaseSubject.asObservable();
     this.bills$ = this.billsSubject.asObservable();
 
+
+   }
+
+  ngOnInit() {
+
     console.log('init ' + name);
 
     this.bills$.subscribe(
       bills => {
+        console.log(bills);
         this.bills = bills;
       });
-   }
 
-  ngOnInit() {
 /*
     this.initDatabase$.subscribe(result => {
       if ( result ) {

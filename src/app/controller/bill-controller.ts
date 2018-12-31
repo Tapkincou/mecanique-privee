@@ -13,7 +13,6 @@ export class BillController extends Database {
    */
   public selectAllBills() {
     return <any>this.getAllDocuments();
-    // TODO
   }
 
   /**

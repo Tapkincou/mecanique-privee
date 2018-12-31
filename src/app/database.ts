@@ -1,6 +1,5 @@
 
 import PouchDB from 'pouchdb';
-import { NullInjector } from '@angular/core/src/di/injector';
 
 export abstract class Database {
 
@@ -8,52 +7,71 @@ export abstract class Database {
   private static ERROR_DATA_NOT_FOUND = 'not_found';
 
   /**
-   *
+   * The local database.
    */
   private database: PouchDB;
+
+  /**
+   * The remote database (sync with the local database).
+   */
   private remoteDatabase: PouchDB;
 
   /**
    *
    */
+  private databaseName: string;
+
+
   constructor(name: string) {
-      this.initDatabase(name);
-      this.database.info().then( (info: any) => {
-          console.log(info);
-         // this.getFromDatabase('1');
-      });
+    this.databaseName = name;
   }
 
-  /**
-   *
-   */
-  public initDatabase(name: string) {
-      this.database = new PouchDB(name);
-      this.remoteDatabase = new PouchDB('http://localhost:5984/' + name);
+/**
+ * Initialize the database.
+ * @param name Database name
+ */
+  public initDatabase(): Boolean {
+      console.log('init database ' + this.databaseName);
+      this.database = new PouchDB(this.databaseName);
+      this.remoteDatabase = new PouchDB('http://localhost:5984/' + this.databaseName);
 
       // Enable live bidirectional replication.
       this.database.sync(this.remoteDatabase, {
         live: true
       }).on('complete', function () {
+
         console.log('Replication enabled');
-        // yay, we're in sync!
-      }).on('error', function (error) {
-        console.log('Error on replication :');
-        console.log(error);
-        // boo, we hit an error!
+
+        this.database.info().then( (info: any) => {
+          console.log(info);
+          return true;
+          }).catch((error) => {
+            console.log('Error on getInfo :');
+            console.log(error);
+            // yay, we're in sync!
+        }).on('error', function (error) {
+          console.log('Error on replication :');
+          console.log(error);
+          // boo, we hit an error!
       });
+    });
+    return false;
   }
 
   /**
-   *
+   * Put a new document into database.
+   * @return Boolean
    */
-  public putIntoDatabase(document: any) {
+  public putDocument(document: any) {
     this.database.put(document).catch( (error) => {
-        // error
+      // error
+      console.log('error dans putDocument ' + error);
       throw error;
     }).then( () => {
+      console.log('putDocument OK');
       return true;
     }).catch( (error) => {
+        console.log('error dans a la fin de putDocument ' + error);
         return false;
       // oh noes! we got an error
       throw error;
@@ -61,10 +79,11 @@ export abstract class Database {
   }
 
   /**
-   *
-   * @param document
+   * Remove a document from database.
+   * @param document Document to remove.
+   * @return boolean
    */
-  public DeleteDatabase(document: any) {
+  public deleteDocument(document: any) {
     this.database.remove(document).catch( (error) => {
           // error
         throw error;
@@ -77,11 +96,44 @@ export abstract class Database {
     });
   }
 
+ /**
+  * Get all documents from database.
+  * @return Array of documents
+  */
+  public getAllDocuments(): any {
+    this.database.allDocs({ include_docs: true })/**.then( (documents: Array<any>) => {
+      console.log('ok ca marche');
+      console.log(documents);
+      return documents;
+  }).catch( (error) => {
+      if (Database.ERROR_DATA_NOT_FOUND === error.name) {
+        console.log('not found');
+        // not found
+      } else {
+        // other error
+        console.log('error ::');
+        console.log(error);
+        throw error;
+      }
+      return null;
+  })**/.then( (documents) => {
+        console.log('dans la classe database ::');
+        console.log(documents);
+        return documents;
+    }).catch( (error) => {
+      // handle any errors whitin the then.
+      console.log('error 2::');
+      console.log(error);
+      throw error;
+    });
+  }
+
   /**
-   *
-   * @param id
+   * Get a document by _id from database.
+   * @param id Id of the document
+   * @return The wanted document.
    */
-  public getFromDatabase(id: string) {
+  public getDocumentById(id: string) {
     this.database.get(id).catch( (error) => {
       if (Database.ERROR_DATA_NOT_FOUND === error.name) {
         console.log('not found');
@@ -100,10 +152,11 @@ export abstract class Database {
   }
 
   /**
-   *
-   * @param updatedDocument
+   * Update a document in database.
+   * @param updatedDocument The updated document.
+   * @return The newly updated document from database.s
    */
-  public updateFromDatabase(updatedDocument: any) {
+  public updateDocument(updatedDocument: any) {
     // fetch mittens
     this.database.get(updatedDocument.id).then( (document: any) => {
         // update their age

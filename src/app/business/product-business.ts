@@ -1,12 +1,12 @@
 import { ProductController } from '../controller/product-controller';
-import { Product } from '../data-object/product';
+import { Product } from '../business-object/product';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export class ProductBusiness {
-  private productController = new ProductController();
+  private productController = new ProductController('productsdatabase');
 
   public getProducts() {
-   return <Product[]>this.productController.selectAllProducts();
+   return <Product[]>this.productController.selectAllProducts(() => {});
   }
 
   public getProductById(id: number) {

@@ -1,8 +1,10 @@
-import { Bill } from '../data-object/bill';
-import { Product } from '../data-object/product';
-import { ProductWithQuantity } from '../data-object/product-with-quantity';
-import { Customer } from '../data-object/customer';
+import { Bill } from '../business-object/bill';
+import { Product } from '../business-object/product';
+import { ProductWithQuantity } from '../business-object/product-with-quantity';
+import { Customer } from '../business-object/customer';
 import { Database } from '../database';
+import { BillDO } from '../data-object/billDO';
+import { BillsDO } from '../data-object/billsDO';
 
 export class BillController extends Database {
 
@@ -10,9 +12,7 @@ export class BillController extends Database {
    *
    */
   public selectAllBills() {
-
-
-    return this.bouchonSelectAllBills();
+    return <any>this.getAllDocuments();
     // TODO
   }
 
@@ -27,23 +27,23 @@ export class BillController extends Database {
 
   private bouchonSelectAllBills() {
     return <Bill[]><any>[
-      { id: 1, customer: this.bouchonCustomer(), products: this.bouchonProductWithQuantity()}, ];
+      { _id: 1, customer: this.bouchonCustomer(), products: this.bouchonProductWithQuantity()}, ];
   }
 
   private bouchonSelectBillById(id: number) {
-    return <Bill><any>{ id: 1, name: 'article1', cost: 10, type: 'type1' };
+    return <Bill><any>{ _id: 1, name: 'article1', cost: 10, type: 'type1' };
   }
 
     private bouchonCustomer() {
-      return <Customer><any>{ id: 4, firstName: 'alexis', lastName: 'barro', city: 'Montpellier',
+      return <Customer><any>{ _id: 4, firstName: 'alexis', lastName: 'barro', city: 'Montpellier',
       address: 'Rouen', postal: 'Rouen', phoneNumber: '0640404040' };
     }
 
     private bouchonProductWithQuantity() {
         return <ProductWithQuantity[]><any>[
-                { product: {id: 111, name: 'pipe d\'admission', cost: 140, type: 'piece moteur'}, quantity: 3 },
-                { product: {id: 112, name: 'pose', cost: 230, type: 'main d\'oeuvre' }, quantity: 1 },
-                { product: {id: 113, name: 'pneus', cost: 400, type: 'main d\'oeuvre' }, quantity: 4 }
+                { product: {_id: 111, name: 'pipe d\'admission', cost: 140, type: 'piece moteur'}, quantity: 3 },
+                { product: {_id: 112, name: 'pose', cost: 230, type: 'main d\'oeuvre' }, quantity: 1 },
+                { product: {_id: 113, name: 'pneus', cost: 400, type: 'main d\'oeuvre' }, quantity: 4 }
     ];
     }
 

@@ -1,15 +1,6 @@
-export class Product {
+import { Product } from '../business-object/product';
 
+export class ProductDO {
 
-  constructor (product: Product) {
-    this.id = product.id;
-    this.name = product.name;
-    this.cost = product.cost;
-    this.type = product.type;
-  }
-
-  private id: number;
-  private name: string;
-  private cost: number;
-  private type: string;
+  private doc: Product;
 }

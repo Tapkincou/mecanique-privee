@@ -1,6 +1,6 @@
 export class Customer {
 
-  private id: number;
+  private _id: number;
   private fisrtName: string;
   private lastName: string;
   private city: string;
@@ -9,7 +9,7 @@ export class Customer {
   private phoneNumber: string;
 
   constructor(customer: Customer) {
-    this.id = customer.id;
+    this._id = customer._id;
     this.fisrtName = customer.fisrtName;
     this.lastName = customer.lastName;
     this.city = customer.city;

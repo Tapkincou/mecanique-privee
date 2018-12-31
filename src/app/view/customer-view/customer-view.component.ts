@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Customer } from 'src/app/data-object/customer';
+import { Customer } from '../../business-object/customer';
 import { Observable } from 'rxjs';
 import { CustomerBusiness } from 'src/app/business/customer-business';
 

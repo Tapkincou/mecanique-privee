@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { ProductBusiness } from 'src/app/business/product-business';
-import { Product } from 'src/app/data-object/product';
+import { Product } from 'src/app/business-object/product';
 import { Subscriber, BehaviorSubject } from 'rxjs';
 
 @Component({

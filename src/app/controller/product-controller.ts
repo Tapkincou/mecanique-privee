@@ -1,14 +1,13 @@
-import { Product } from '../data-object/product';
+import { Product } from '../business-object/product';
+import { Database } from '../database';
 
-export class ProductController {
+export class ProductController extends Database {
 
   /**
    *
    */
-  public selectAllProducts() {
-
-
-    return this.bouchonSelectAllProducts();
+  public selectAllProducts(callback: Function) {
+    return <Product[]><any> this.getAllDocuments();
     // TODO
   }
 

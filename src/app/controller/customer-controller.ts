@@ -1,14 +1,13 @@
-import { Customer } from '../data-object/customer';
+import { Customer } from '../business-object/customer';
+import { Database } from '../database';
 
-export class CustomerController {
+export class CustomerController extends Database {
 
   /**
    *
    */
-  public selectAllCustomers() {
-
-
-    return this.bouchonSelectAllCustomers();
+  public selectAllCustomers(callback: Function) {
+    return <Customer[]><any> this.getAllDocuments();
     // TODO
   }
 

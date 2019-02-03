@@ -23,7 +23,7 @@ export class AppComponent {
 
   constructor (public viewContainerRef: ViewContainerRef) {
 
-    this.currentView = this.BILL_VIEW;
+    this.currentView = this.CUSTOMER_VIEW;
     this.productBusiness = new ProductBusiness();
 
 

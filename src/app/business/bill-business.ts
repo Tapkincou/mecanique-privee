@@ -1,7 +1,7 @@
 import { Bill } from '../business-object/bill';
 import { BillController } from '../controller/bill-controller';
 import { BillDO } from '../data-object/billDO';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from, Subject } from 'rxjs';
 import { BillsDO } from '../data-object/billsDO';
 
 /**
@@ -17,12 +17,50 @@ export class BillBusiness {
     /**
      *
      */
+
+    bills: any;
+
+    getBillsSubject = new BehaviorSubject<any>(this.bills);
+
     public getBills(): any {
-        const dataPromise = new Promise(this.billController.selectAllBills());
-        dataPromise.then(val => {
-            console.log('Promise.all Result:', val);
+
+    this.billController.selectAllBills().then(data => {
+        console.log('dans get bills');
+        console.log(data);
+        this.bills = data;
+        console.log(this.bills);
+    });
+
+
+
+    /*   from(this.billController.selectAllBills()).subscribe(data => {
+            console.log('dans get bills');
+            console.log(data);
+            this.bills = data;
+            console.log(this.bills);
         });
-        return dataPromise;
+
+
+   /* public getBills(): Promise<any> {
+        console.log('dans le buz ::');
+        return (this.billController.selectAllBills()); /*.then( (result) => {
+            const documents = new Array<Object>();
+            console.log('CA MARCHE DE FOU');
+            console.log(result.rows);
+            // return Promise.all(result.rows); // Promise.all
+             this.bizbill = (result.rows);
+        }).catch( (error) => {
+          /*if (Database.ERROR_DATA_NOT_FOUND === error.name) {
+            console.log('not found');
+            // not found
+          } else {
+            // other error
+            console.log('error ::');
+            console.log(error);
+            throw error;
+        //  }
+        }); /// new Promise<BillDO[]>
+*/
     }
 
     /**

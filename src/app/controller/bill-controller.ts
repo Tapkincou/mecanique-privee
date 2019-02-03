@@ -8,11 +8,15 @@ import { BillsDO } from '../data-object/billsDO';
 
 export class BillController extends Database {
 
+
+
+
 /**
    *
    */
-  public selectAllBills() {
-    return <any>this.getAllDocuments();
+  public selectAllBills(): Promise<any> {
+    console.log('dans le contrller ::');
+    return <Promise<any>>this.getAllDocuments();
   }
 
   /**
@@ -43,7 +47,7 @@ export class BillController extends Database {
                 { product: {_id: 111, name: 'pipe d\'admission', cost: 140, type: 'piece moteur'}, quantity: 3 },
                 { product: {_id: 112, name: 'pose', cost: 230, type: 'main d\'oeuvre' }, quantity: 1 },
                 { product: {_id: 113, name: 'pneus', cost: 400, type: 'main d\'oeuvre' }, quantity: 4 }
-    ];
+      ];
     }
 
 }

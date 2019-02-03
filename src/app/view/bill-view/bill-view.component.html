@@ -2,17 +2,17 @@
   bill-view works!
 </p>
 
-<div *ngIf="bills !== undefined">
-  heyheyhey
+<div>
+  hey {{bills.rows[0].doc.customer.firstName}}
 </div>
 
-<div *ngFor="let bill of (bills|async)">
-  coucou
-  <h2>
-    Facture de {{bill.customer.firstName}} {{bill.customer.lastName}}
-  </h2>
-  <span>
-    {{bill.products[0].product.name}}
-    {{bill.products[0].product.cost}}
-  </span>
-</div>
+<div *ngFor="let row of bills">
+    <h2>
+      Facture de {{bill.doc.customer.firstName}} {{bill.doc.customer.lastName}}
+    </h2>
+    <span>
+        {{bill.doc._id}}
+      {{bill.doc.products[0].product.name}}
+      {{bill.doc.products[0].product.cost}}
+    </span>
+  </div>

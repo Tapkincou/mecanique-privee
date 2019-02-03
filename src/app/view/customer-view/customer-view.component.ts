@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Customer } from '../../business-object/customer';
 import { Observable } from 'rxjs';
 import { CustomerBusiness } from 'src/app/business/customer-business';
+import { CustomerDO } from 'src/app/data-object/customerDO';
 
 @Component({
   selector: 'app-customer-view',
@@ -12,18 +13,29 @@ import { CustomerBusiness } from 'src/app/business/customer-business';
 export class CustomerViewComponent implements OnInit {
 
   name = 'app-customer-view';
-  private customerBusiness = new CustomerBusiness();
-  private customers$: Observable<Customer[]>;
-  private customerSubject: BehaviorSubject<Customer[]> = new  BehaviorSubject<Customer[]>(this.customerBusiness.getCustomers());
+  private customerBusiness: CustomerBusiness;
+  private customers$: Observable<Array<Customer>>;
+  private customerSubject: BehaviorSubject<Array<Customer>>;
 
-  public customers: Array<Customer>;
+  public customers: Array<Customer>; // Array<Customer>;
   constructor() {
-    this.customers$ = this.customerSubject.asObservable();
+    this.customerBusiness = new CustomerBusiness();
+    this.customerSubject = new  BehaviorSubject<Array<Customer>>(this.customerBusiness.getCustomers());
   }
 
   ngOnInit() {
+    this.customers$ = this.customerSubject.asObservable();
+    this.customerBusiness.updateCustomers();
     console.log('init ' + name);
-    this.customers$.subscribe( customers => this.customers = customers);
+    this.customers$.subscribe( (customers) => {
+      this.customers = customers;
+      console.log('customers::');
+      console.log(customers);
+
+    });
+
+
+
   }
 
 }

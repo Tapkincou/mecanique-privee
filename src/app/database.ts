@@ -20,9 +20,10 @@ export abstract class Database {
    *
    */
   private databaseName: string;
-
+  public allDocs: any;
 
   constructor(name: string) {
+    this.allDocs = null;
     this.databaseName = name;
     this.initDatabase();
   }
@@ -35,7 +36,6 @@ export abstract class Database {
       console.log('init database ' + this.databaseName);
       this.database = new PouchDB(this.databaseName);
       this.remoteDatabase = new PouchDB('http://localhost:5984/' + this.databaseName);
-
       // Enable live bidirectional replication.
       this.database.sync(this.remoteDatabase, {
         live: true
@@ -102,26 +102,14 @@ export abstract class Database {
   * Get all documents from database.
   * @return Array of documents
   */
-  public getAllDocuments(): any {
-    this.database.allDocs({ include_docs: true })/**.then( (documents: Array<any>) => {
-      console.log('ok ca marche');
-      console.log(documents);
-      return documents;
-  }).catch( (error) => {
-      if (Database.ERROR_DATA_NOT_FOUND === error.name) {
-        console.log('not found');
-        // not found
-      } else {
-        // other error
-        console.log('error ::');
-        console.log(error);
-        throw error;
-      }
-      return null;
-  })**/.then( (documents) => {
+  public getAllDocuments(): Promise<any> {
+    return this.database.allDocs({ include_docs: true }); /*.then( (result) => {
+        const documents = new Array<Object>();
         console.log('dans la classe database ::');
-        console.log(documents);
-        return documents;
+        console.log(result.rows);
+        this.allDocs = result.rows;
+        // return Promise.all(result.rows); // Promise.all
+       // return (result.rows);
     }).catch( (error) => {
       if (Database.ERROR_DATA_NOT_FOUND === error.name) {
         console.log('not found');
@@ -132,7 +120,7 @@ export abstract class Database {
         console.log(error);
         throw error;
       }
-    });
+    });*/
   }
 
   /**

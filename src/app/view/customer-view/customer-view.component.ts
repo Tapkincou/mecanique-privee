@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Customer } from '../../business-object/customer';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { CustomerDO } from 'src/app/data-object/customerDO';
   templateUrl: './customer-view.component.html',
   styleUrls: ['./customer-view.component.scss']
 })
-export class CustomerViewComponent implements OnInit {
+export class CustomerViewComponent implements OnInit, OnDestroy {
 
   name = 'app-customer-view';
   private customerBusiness: CustomerBusiness;
@@ -36,6 +36,12 @@ export class CustomerViewComponent implements OnInit {
 
 
 
+  }
+
+  ngOnDestroy() {
+    console.log('On destroy');
+    this.customers$.subscribe().unsubscribe();
+    console.log(this.customerBusiness.closeDB());
   }
 
 }

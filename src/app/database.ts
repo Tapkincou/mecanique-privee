@@ -167,4 +167,8 @@ export abstract class Database {
 
   }
 
+
+  public completeDB() {
+    return this.database.complete();
+  }
 }

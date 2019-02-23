@@ -17,7 +17,12 @@ export class CustomerBusiness {
     constructor() {
     }
 
-    getCustomers() {
+    public closeDB() {
+        this.customerController.completeDB();
+
+    }
+
+    public getCustomers() {
         return this.customers;
     }
 

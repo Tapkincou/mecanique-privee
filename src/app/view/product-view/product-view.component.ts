@@ -14,17 +14,28 @@ export class ProductViewComponent implements OnInit {
 
   public name = 'app-product-view';
   private productBusiness = new ProductBusiness();
-  private products$: Observable<Product[]>;
-  private productsSubject: BehaviorSubject<Product[]> = new  BehaviorSubject<Product[]>(this.productBusiness.getProducts());
+  private products$: Observable<Array<Product>>;
+  private productsSubject: BehaviorSubject<Product[]>;
 
   public products: Array<Product>;
   constructor() {
-    this.products$ = this.productsSubject.asObservable();
+    this.productBusiness = new ProductBusiness();
+    this.productsSubject = new  BehaviorSubject<Product[]>(this.productBusiness.getProducts());
   }
 
   ngOnInit() {
+    this.products$ = this.productsSubject.asObservable();
+    this.productBusiness.updateProducts();
     console.log('init ' + name);
-    this.products$.subscribe( products => this.products = products);
+    this.products$.subscribe( (products) => {
+      this.products = products;
+      console.log('products::');
+      console.log(products);
+
+    });
+
+
+
   }
 
 }

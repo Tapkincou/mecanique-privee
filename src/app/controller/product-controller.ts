@@ -1,13 +1,14 @@
 import { Product } from '../business-object/product';
 import { Database } from '../database';
+import { from } from 'rxjs';
 
 export class ProductController extends Database {
 
   /**
    *
    */
-  public selectAllProducts(callback: Function) {
-    return <Product[]><any> this.getAllDocuments();
+  public selectAllProducts() {
+    return from(this.getAllDocuments());
     // TODO
   }
 

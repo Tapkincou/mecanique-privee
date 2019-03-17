@@ -16,15 +16,15 @@ export class CustomerBusiness {
 
     constructor() {
     }
-
-    public closeDB() {
-        this.customerController.completeDB();
-
-    }
-
     public getCustomers() {
         return this.customers;
     }
+
+
+    public createCustomers(customerBO: Customer) {
+        console.log(this.customerController.putDocument(customerBO));
+    }
+
 
     /**
      *
@@ -46,8 +46,8 @@ export class CustomerBusiness {
 
         /** Into CustomerDO, default doc._id = null */
         console.log('CustomerDOtoBO');
-        console.log(new Customer(customerDO.doc));
-        const customer = new Customer(customerDO.doc); // customerDO.getDoc();
+        console.log(new Customer().DOtoBO(customerDO.doc));
+        const customer = new Customer().DOtoBO(customerDO.doc); // customerDO.getDoc();
        // customer.set_id(customerDO.get_id());
         return customer;
 

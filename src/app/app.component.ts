@@ -19,13 +19,9 @@ export class AppComponent {
 
   private currentView;
 
-  private productBusiness;
-
   constructor (public viewContainerRef: ViewContainerRef) {
 
-    this.currentView = this.CUSTOMER_VIEW;
-    this.productBusiness = new ProductBusiness();
-
+    this.currentView = this.PRODUCT_VIEW; // CUSTOMER_VIEW
 
   }
 

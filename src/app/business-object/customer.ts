@@ -6,12 +6,23 @@ export class Customer {
   private lastName: string;
   private city: string;
   private address: string;
-  private postal: string;
+  private postal: number;
   private phoneNumber: string;
 
 
-  constructor(customer: Customer = new Customer()) {
+  constructor(_id: string = '', firstName: string = '', lastName: string = '', city: string = ''
+  , address: string = '', postal: number = null, phoneNumber: string = '') {
 
+    this._id = _id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.city = city;
+    this.address = address;
+    this.postal = postal;
+    this.phoneNumber = phoneNumber;
+  }
+
+  public DOtoBO(customer: Customer) {
     this._id = customer._id;
     this.firstName = customer.firstName;
     this.lastName = customer.lastName;
@@ -19,6 +30,8 @@ export class Customer {
     this.address = customer.address;
     this.postal = customer.postal;
     this.phoneNumber = customer.phoneNumber;
+
+    return this;
   }
 
   public get_id() {

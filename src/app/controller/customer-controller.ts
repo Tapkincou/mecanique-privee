@@ -17,7 +17,7 @@ export class CustomerController extends Database {
    * @param id: id of the product.
    */
   public selectCustomerById(id: number) {
-    return new Customer(this.bouchonSelectCustomerById());
+    return this.bouchonSelectCustomerById();
     // TODO
   }
 
@@ -34,7 +34,7 @@ export class CustomerController extends Database {
   }
 
   private bouchonSelectCustomerById() {
-    return <Customer><any>{ id: 4, fisrtName: 'alexis', lastName: 'barro', city: 'Montpellier',
+    return <Customer><any>{ _id: 4, fisrtName: 'alexis', lastName: 'barro', city: 'Montpellier',
     address: 'Rouen', postal: 'Rouen', phoneNumber: '0640404040' };
   }
 

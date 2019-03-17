@@ -42,9 +42,9 @@ export abstract class Database {
       }).on('complete', function () {
 
         console.log('Replication enabled');
-
         this.database.info().then( (info: any) => {
           console.log(info);
+
           }).catch((error) => {
             console.log('Error on getInfo :');
             console.log(error);
@@ -167,8 +167,4 @@ export abstract class Database {
 
   }
 
-
-  public completeDB() {
-    return this.database.complete();
-  }
 }

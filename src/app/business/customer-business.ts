@@ -1,7 +1,7 @@
 import { Customer } from '../business-object/customer';
 import { CustomerController } from '../controller/customer-controller';
 import { CustomerDO } from '../data-object/customerDO';
-
+import { v4 } from 'uuid';
 /**
  *
  */
@@ -22,6 +22,9 @@ export class CustomerBusiness {
 
 
     public createCustomers(customerBO: Customer) {
+        if (customerBO.get_id !== null) {
+            customerBO.set_id(v4.toString());
+        }
         console.log(this.customerController.putDocument(customerBO));
     }
 
@@ -43,6 +46,18 @@ export class CustomerBusiness {
 
 
     private customerDOtoBO(customerDO: CustomerDO): Customer {
+
+        /** Into CustomerDO, default doc._id = null */
+        console.log('CustomerDOtoBO');
+        console.log(new Customer().DOtoBO(customerDO.doc));
+        const customer = new Customer().DOtoBO(customerDO.doc); // customerDO.getDoc();
+       // customer.set_id(customerDO.get_id());
+        return customer;
+
+
+    }
+
+    private customerBOtoDO(customerDO: CustomerDO): Customer {
 
         /** Into CustomerDO, default doc._id = null */
         console.log('CustomerDOtoBO');

@@ -34,8 +34,8 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
 
     });
 
-    this.customerBusiness.createCustomers(new Customer('voir les decorator', 'noel', 'flantier', 'paris', '3 rue de la street',
-    78000, '+3339723823'));
+    this.customerBusiness.createCustomers(new Customer(null, 'hubert', 'de la batte', 'le caire', 'rue de la saucisson',
+    34000, '+333966663'));
 
   }
 

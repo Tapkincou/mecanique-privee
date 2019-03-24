@@ -9,6 +9,8 @@ import { CustomerViewComponent } from './view/customer-view/customer-view.compon
 import { EstimateViewComponent } from './view/estimate-view/estimate-view.component';
 import { ProductViewComponent } from './view/product-view/product-view.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CustomerViewComponent,
     EstimateViewComponent,
     ProductViewComponent,
+    CustomerEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatButtonModule,
     MatMenuModule,
     MatSidenavModule,
-    DragDropModule
+    DragDropModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

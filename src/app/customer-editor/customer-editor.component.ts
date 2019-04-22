@@ -1,6 +1,7 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 @Component({
   selector: 'app-customer-editor',
   templateUrl: './customer-editor.component.html',
@@ -14,17 +15,23 @@ import { FormsModule } from '@angular/forms';
     FormControl
   ],
   declarations: [
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ]
 })
-export class CustomerEditorComponent implements OnInit {
+export class CustomerEditorComponent {
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<CustomerEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: null) {}
 
-  ngOnInit() {
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   onSubmit() {
@@ -32,4 +39,7 @@ export class CustomerEditorComponent implements OnInit {
     console.warn(this.profileForm.value);
   }
 
+  closeDialog() {
+    this.dialogRef.close('Pizza!');
+  }
 }

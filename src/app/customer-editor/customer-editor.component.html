@@ -2,16 +2,12 @@
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   
-  <label>
-    First Name:
-    <input type="text" formControlName="firstName">
-  </label>
-
-  <label>
-    Last Name:
-    <input type="text" formControlName="lastName">
-  </label>
-
+  <mat-form-field>
+    <input matInput type="text" placeholder="prenom" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="nom" formControlName="lastName">
+  </mat-form-field>
 </form>
 
 

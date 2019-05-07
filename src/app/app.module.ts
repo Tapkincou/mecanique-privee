@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatDialogModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,7 +31,9 @@ import { CustomerEditorComponent } from './customer-editor/customer-editor.compo
     MatSidenavModule,
     MatDialogModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

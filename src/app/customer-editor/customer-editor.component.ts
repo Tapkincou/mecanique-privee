@@ -24,6 +24,8 @@ export class CustomerEditorComponent {
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
+    email:  new FormControl(''),
+    phoneNumber:  new FormControl(''),
   });
 
   constructor(
@@ -37,6 +39,8 @@ export class CustomerEditorComponent {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
+    console.warn('onSubmit');
+    this.dialogRef.close();
   }
 
   closeDialog() {

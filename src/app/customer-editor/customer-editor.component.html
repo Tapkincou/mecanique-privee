@@ -1,14 +1,13 @@
 <h1 mat-dialog-title>Hi</h1>
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  
   <mat-form-field>
     <input matInput type="text" placeholder="prenom" formControlName="firstName">
   </mat-form-field>
   <mat-form-field>
     <input matInput type="text" placeholder="nom" formControlName="lastName">
   </mat-form-field>
+
+  <button type="submit" [disabled]="!profileForm.valid">Ajouter</button>
 </form>
 
-
-<button type="submit" [disabled]="!profileForm.valid">Submit</button>

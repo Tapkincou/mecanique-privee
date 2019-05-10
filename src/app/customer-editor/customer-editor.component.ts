@@ -2,6 +2,12 @@ import { Component, OnInit, NgModule, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+
+/* export interface DialogData {
+  firstName: string;
+  lastName: string;
+} */
+
 @Component({
   selector: 'app-customer-editor',
   templateUrl: './customer-editor.component.html',
@@ -20,17 +26,20 @@ import { MAT_DIALOG_DATA, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ]
 })
+
 export class CustomerEditorComponent {
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email:  new FormControl(''),
     phoneNumber:  new FormControl(''),
+    address:  new FormControl('')
   });
 
+  // ,@Inject(MAT_DIALOG_DATA) public data: DialogData
   constructor(
-    public dialogRef: MatDialogRef<CustomerEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: null) {}
+   public dialogRef: MatDialogRef<CustomerEditorComponent>) {
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -40,7 +49,7 @@ export class CustomerEditorComponent {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
     console.warn('onSubmit');
-    this.dialogRef.close();
+    this.dialogRef.close(this.profileForm);
   }
 
   closeDialog() {

@@ -2,12 +2,20 @@
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input matInput type="text" placeholder="prenom" formControlName="firstName">
+    <input matInput type="text" placeholder="prenom" formControlName="firstName" >
   </mat-form-field>
   <mat-form-field>
     <input matInput type="text" placeholder="nom" formControlName="lastName">
   </mat-form-field>
-
+  <mat-form-field>
+    <input matInput type="text" placeholder="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="telephone" formControlName="phoneNumber">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="adresse" formControlName="address">
+  </mat-form-field>
   <button type="submit" [disabled]="!profileForm.valid">Ajouter</button>
 </form>
 

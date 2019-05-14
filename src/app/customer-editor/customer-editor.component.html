@@ -1,4 +1,5 @@
-<h1 mat-dialog-title>Hi</h1>
+<div class=triangle-topright></div>
+<h1 mat-dialog-title>Ajouter un client</h1>
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
@@ -16,6 +17,7 @@
   <mat-form-field>
     <input matInput type="text" placeholder="adresse" formControlName="address">
   </mat-form-field>
-  <button type="submit" [disabled]="!profileForm.valid">Ajouter</button>
+  <button mat-button onclick="closeDialog()">Quitter</button>
+  <button mat-button type="submit" [disabled]="!profileForm.valid">Ajouter</button>
 </form>
 

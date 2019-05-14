@@ -53,6 +53,6 @@ export class CustomerEditorComponent {
   }
 
   closeDialog() {
-    this.dialogRef.close('Pizza!');
+    this.dialogRef.close('quit');
   }
 }

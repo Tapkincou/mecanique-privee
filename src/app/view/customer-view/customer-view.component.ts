@@ -49,6 +49,7 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
      // data: { fistName: this.firstName},
       height: '400px',
       width: '600px',
+      panelClass: 'add-dialog-container'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

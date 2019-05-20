@@ -1,1 +1,27 @@
-.triangle-topright { margin-right:0; width: 0; height: 0; border-top: 100px solid red; border-left: 100px solid transparent; } 
+.triangle-topright { float: right; width: 0; height: 0; border-top: 50px solid red; border-left: 50px solid transparent; } 
+.close {
+    float: right;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    float: right;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  

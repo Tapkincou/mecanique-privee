@@ -1,19 +1,45 @@
-.triangle-topright { float: right; width: 0; height: 0; border-top: 50px solid red; border-left: 50px solid transparent; } 
-.close {
-    width: 32px;
-    height: 32px;
-    opacity: 0.3;
 
-  }
+.topright { float: right; width: 60px; height: 60px; }
 
+.triangle-toprigh {
+  float: right;
+  position: relative;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  border-top: 60px solid red; border-left: 60px solid transparent; 
+} 
 
-  .close::before {
-    transform: rotate(45deg);
-    background-color: black;
-    height: 5px;
-  }
-  .close::after {
-    transform: rotate(-45deg);
-    background-color: black;
-    height: 5px;
-  }
+.cross {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  height: 20px;
+  width: 20px;
+  left: 35px;
+  top: 5px;
+}
+
+.cross:before {
+  background: white;
+  transform: rotate(45deg);
+  position: absolute;
+  z-index: 3;
+  height: 20px;
+  width: 3px;
+  left: 7px;
+  top: 0px;
+  content:' ';
+}
+
+.cross:after {
+  background: white;
+  transform: rotate(-45deg);
+  position: absolute;
+  z-index: 3;
+  height: 20px;
+  width: 3px;
+  left: 7px;
+  top: 0px;
+  content:'';
+}

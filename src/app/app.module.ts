@@ -11,6 +11,8 @@ import { ProductViewComponent } from './view/product-view/product-view.component
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
+import { ProductEditorComponent } from './product-editor/product-editor.component';
+import { BillEditorComponent } from './bill-editor/bill-editor.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { CustomerEditorComponent } from './customer-editor/customer-editor.compo
     EstimateViewComponent,
     ProductViewComponent,
     CustomerEditorComponent,
+    ProductEditorComponent,
+    BillEditorComponent,
   ],
   imports: [
     BrowserModule,

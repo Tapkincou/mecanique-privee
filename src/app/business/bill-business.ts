@@ -18,18 +18,12 @@ export class BillBusiness {
      *
      */
 
-    bills: any;
-
+    private bills = new Array<Bill>();
     getBillsSubject = new BehaviorSubject<any>(this.bills);
 
-    public getBills(): any {
-
-    this.billController.selectAllBills().then(data => {
-        console.log('dans get bills');
-        console.log(data);
-        this.bills = data;
-        console.log(this.bills);
-    });
+    public getBills() {
+      return this.bills;
+  }
 
 
 
@@ -60,9 +54,9 @@ export class BillBusiness {
             throw error;
         //  }
         }); /// new Promise<BillDO[]>
-*/
-    }
 
+    }
+*/
     /**
      *
      *

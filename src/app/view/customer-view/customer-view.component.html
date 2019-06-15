@@ -1,7 +1,7 @@
 <p>
   customer-view works!
 </p>
-<div class="Array">
+<div *ngIf="customers !== undefined" class="Array">
   <div class="Row" *ngFor="let customer of customers">
     client de {{customer.firstName}} {{customer.lastName}}
   </div>

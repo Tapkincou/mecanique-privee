@@ -1,17 +1,18 @@
+import { EmailValidator } from "@angular/forms";
+
 export class Customer {
 
   private _id: string;
   private firstName: string;
-  private fisrtName: string;
   private lastName: string;
   private city: string;
   private address: string;
   private postal: number;
   private phoneNumber: string;
-
+  private email: EmailValidator;
 
   constructor(_id: string = '', firstName: string = '', lastName: string = '', city: string = ''
-  , address: string = '', postal: number = null, phoneNumber: string = '') {
+  , address: string = '', postal: number = null, phoneNumber: string = '', email: EmailValidator = null) {
 
     this._id = _id;
     this.firstName = firstName;
@@ -20,6 +21,7 @@ export class Customer {
     this.address = address;
     this.postal = postal;
     this.phoneNumber = phoneNumber;
+    this.email = email;
   }
 
   public DOtoBO(customer: Customer) {
@@ -30,7 +32,7 @@ export class Customer {
     this.address = customer.address;
     this.postal = customer.postal;
     this.phoneNumber = customer.phoneNumber;
-
+    this.email = customer.email;
     return this;
   }
 
@@ -49,12 +51,6 @@ export class Customer {
     this.firstName = firstName;
   }
 
-  public getFisrtName() {
-    return this.fisrtName;
-  }
-  public setFisrtName(fisrtName: string) {
-    this.fisrtName = fisrtName;
-  }
   public getLastName() {
     return this.lastName;
   }
@@ -63,5 +59,43 @@ export class Customer {
     this.lastName = lastName;
   }
 
+  public getAddress() {
+    return this.address;
+  }
 
+  public setAddress(address: string) {
+    this.address = address;
+  }
+
+  public getPhoneNumber() {
+    return this.phoneNumber;
+  }
+
+  public setPhoneNumber(phoneNumber: string) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public getPostal() {
+    return this.postal;
+  }
+
+  public setPostal(postal: number) {
+    this.postal = postal;
+  }
+
+  public getCity() {
+    return this.city;
+  }
+
+  public setCity(city: string) {
+    this.city = city;
+  }
+
+  public getEmail() {
+    return this.email;
+  }
+
+  public setEmail(email: EmailValidator) {
+    this.email = email;
+  }
 }

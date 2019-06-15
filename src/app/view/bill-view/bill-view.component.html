@@ -2,17 +2,14 @@
   bill-view works!
 </p>
 
-<div>
-  hey {{bills.rows[0].doc.customer.firstName}}
-</div>
-
-<div *ngFor="let row of bills">
-    <h2>
-      Facture de {{bill.doc.customer.firstName}} {{bill.doc.customer.lastName}}
-    </h2>
-    <span>
-        {{bill.doc._id}}
-      {{bill.doc.products[0].product.name}}
-      {{bill.doc.products[0].product.cost}}
-    </span>
+  <div *ngIf="bills !== undefined" class="Array">
+    <div class="Row" *ngFor="let bill of bills">
+      Facture de {{bill.customer.firstName}} {{bill.customer.lastName}} {{bill.cost}}
+    </div>
+  
+  </div>
+  
+  <div>
+    <button mat-raised-button (click)="openDialog()" class="">Nouvelle facture</button>
+      <!-- <app-customer-editor></app-customer-editor> -->
   </div>

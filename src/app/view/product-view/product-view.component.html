@@ -1,14 +1,14 @@
 <p>
   product-view works!
 </p>
+<div *ngIf="products !== undefined" class="Array">
+  <div class="Row" *ngFor="let product of products">
+    client de {{product.cost}} {{product.name}} {{product.type}}
+  </div>
 
-<div *ngFor="let product of products">
+</div>
 
-  <h2>
-    {{product.name}}
-  </h2>
-  <span>
-    {{product.cost}}
-    {{product.type}}
-  </span>
+<div>
+  <button mat-raised-button (click)="openDialog()" class="">Nouveau produit</button>
+    <!-- <app-customer-editor></app-customer-editor> -->
 </div>

@@ -76,15 +76,34 @@ export class BillViewComponent implements OnInit, OnDestroy {
         console.log(result);
       }
      this.billBusiness.getBills();
-    });*/
+    });
 
     this.billBusiness.getBills().subscribe(bills => {
       console.log('coucoucoucou:::  ${bills}');
       console.log(bills);
       this.bills = bills;
 
-    });
+    });*/
   }
+
+  openDialog(): void {
+  /*  const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+   const dialogRef = this.dialog.open(CustomerEditorComponent, {
+     // data: { fistName: this.firstName},
+      height: this.DIALOG_HEIGHT,
+      width: this.DIALOG_WIDTH,
+      panelClass: 'add-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.customerBusiness.createCustomers(this.customerBusiness.customerFOtoBO(result));
+      console.log(result);
+    });*/
+  }
+
 
   ngOnDestroy() {
     // this.test$.subscribe().unsubscribe();

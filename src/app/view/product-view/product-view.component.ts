@@ -38,4 +38,23 @@ export class ProductViewComponent implements OnInit {
 
   }
 
+  openDialog(): void {
+   /* const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+   const dialogRef = this.dialog.open(CustomerEditorComponent, {
+     // data: { fistName: this.firstName},
+      height: Constants.DIALOG_HEIGHT,
+      width: Constants.DIALOG_WIDTH,
+      panelClass: 'add-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.customerBusiness.createCustomers(this.customerBusiness.customerFOtoBO(result));
+      console.log(result);
+    });*/
+  }
+
+
 }

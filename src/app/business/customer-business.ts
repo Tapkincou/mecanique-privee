@@ -2,6 +2,7 @@ import { Customer } from '../business-object/customer';
 import { CustomerController } from '../controller/customer-controller';
 import { CustomerDO } from '../data-object/customerDO';
 import { v4 } from 'uuid';
+import { EmailValidator } from '@angular/forms';
 /**
  *
  */
@@ -23,7 +24,7 @@ export class CustomerBusiness {
 
     public createCustomers(customerBO: Customer) {
         if (customerBO.get_id !== null) {
-            customerBO.set_id(v4.toString());
+            customerBO.set_id(v4().toString());
         }
         console.log(this.customerController.putDocument(customerBO));
     }
@@ -69,6 +70,20 @@ export class CustomerBusiness {
 
     }
 
+    public customerFOtoBO(customerFO: {firstName: string, lastName: string, address: string, email: EmailValidator, phoneNumber: string}): Customer{
+
+        /** Into CustomerFO, default doc._id = null */
+        console.log('CustomerFOtoBO');
+        const customer = new Customer();
+        customer.setFirstName(customerFO.firstName);
+        customer.setLastName(customerFO.lastName);
+        customer.setAddress(customerFO.address);
+        // customer.setEmail(customerFO.email);
+        customer.setPhoneNumber(customerFO.phoneNumber);
+        customer.set_id(null);
+        return customer;
+
+    }
     /**
      *
      *

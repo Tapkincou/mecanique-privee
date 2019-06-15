@@ -49,7 +49,7 @@ export class CustomerEditorComponent {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
     console.warn('onSubmit');
-    this.dialogRef.close(this.profileForm);
+    this.dialogRef.close(this.profileForm.value);
   }
 
   closeDialog() {

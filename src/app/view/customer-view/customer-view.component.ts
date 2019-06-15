@@ -7,7 +7,7 @@ import { CustomerDO } from 'src/app/data-object/customerDO';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomerEditorComponent } from 'src/app/customer-editor/customer-editor.component';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { Constants } from '../../config/constants';
 // export interface DialogData { firstName: string; lastName: string; }
 
 @Component({
@@ -35,7 +35,6 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
       this.customers = customers;
       console.log('customers::');
       console.log(customers);
-
     });
 
   }
@@ -47,12 +46,13 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
 
    const dialogRef = this.dialog.open(CustomerEditorComponent, {
      // data: { fistName: this.firstName},
-      height: '400px',
-      width: '600px',
+      height: Constants.DIALOG_HEIGHT,
+      width: Constants.DIALOG_WIDTH,
       panelClass: 'add-dialog-container'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.customerBusiness.createCustomers(this.customerBusiness.customerFOtoBO(result));
       console.log(result);
     });
   }

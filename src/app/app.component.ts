@@ -21,7 +21,7 @@ export class AppComponent {
 
   constructor (public viewContainerRef: ViewContainerRef) {
 
-    this.currentView = this.PRODUCT_VIEW; // CUSTOMER_VIEW
+    this.currentView = this.BILL_VIEW; // CUSTOMER_VIEW
 
   }
 

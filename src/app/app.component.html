@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <div>
+
   <mat-toolbar class="menubar">Mécanique Privée
       <button (click)="changeCurrentView('app-customer-view')">Clients</button>
       <button mat-button (click)="changeCurrentView('app-product-view')" [matMenuTriggerFor]="menuProduits">Produits</button>
@@ -20,8 +21,10 @@
       </mat-menu>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav" >
-    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+  <mat-sidenav-container class="sidenav-container"  >
+
+    <mat-sidenav mode="side" class="left-sidenav" opened>Left-Sidenav content</mat-sidenav>
+    <mat-sidenav mode="side" class="right-sidenav" position="end" opened>End</mat-sidenav>
     <mat-sidenav-content>Main content
         <app-bill-view #billView  *ngIf="isCurrentView(BILL_VIEW)"></app-bill-view>
         <!-- billView.name -->
@@ -29,7 +32,9 @@
         <app-estimate-view #estimateView *ngIf="isCurrentView(ESTIMATE_VIEW)"></app-estimate-view>
         <app-product-view #productView *ngIf="isCurrentView(PRODUCT_VIEW)"></app-product-view>
     </mat-sidenav-content>
+
   </mat-sidenav-container>
+
 
 </div>
 

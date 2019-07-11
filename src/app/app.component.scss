@@ -1,4 +1,6 @@
-$menubar-size: 10%;
+
+$menubar-size: 50px;
+$sidenav-size: 200px;
 $font-stack: Helvetica, sans-serif;
 
 .menubar {
@@ -9,14 +11,25 @@ $font-stack: Helvetica, sans-serif;
   z-index: 1;
 }
 
-.sidenav {
+.sidenav-container {
     position: absolute;
     top: $menubar-size;
-    bottom: 0;
+    bottom:0;
+    right:0;
     left: 0;
-    right: 0;
     background: #eee;
     z-index: 1;
+  }
+
+  .left-sidenav {
+    position: absolute;
+    width: $sidenav-size;
+  }
+
+
+  .right-sidenav {
+    position: absolute;
+    width: $sidenav-size;
   }
 
   .bottomRightButton {

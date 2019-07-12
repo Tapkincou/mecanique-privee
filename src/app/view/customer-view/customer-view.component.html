@@ -1,11 +1,20 @@
-<p>
-  customer-view works!
-</p>
+<div class="sidenav-title">
+  Liste clients
+</div>
 <div *ngIf="customers !== undefined" class="Array">
-  <div class="Row" *ngFor="let customer of customers">
-    client de {{customer.firstName}} {{customer.lastName}}
+  
+  <div
+  cdkDropList
+  #customerList="cdkDropList"
+  [cdkDropListData]="customers"
+  
+  class="customer-list"
+  (cdkDropListDropped)="drop($event)"
+  > <!-- [cdkDropListConnectedTo]="[billMaker]" -->
+    <div class="customer-row" *ngFor="let customer of customers" cdkDrag>
+      {{customer.firstName}} {{customer.lastName}}
+    </div>
   </div>
-
 </div>
 
 <div>

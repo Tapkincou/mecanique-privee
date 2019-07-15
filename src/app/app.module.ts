@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
 import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { BillEditorComponent } from './bill-editor/bill-editor.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { BillEditorComponent } from './bill-editor/bill-editor.component';
     DragDropModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

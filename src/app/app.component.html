@@ -4,7 +4,7 @@
 
   <mat-toolbar class="menubar">Mécanique Privée
       <button (click)="changeCurrentView('app-customer-view')">Clients</button>
-      <button mat-button (click)="changeCurrentView('app-product-view')" [matMenuTriggerFor]="menuProduits">Produits</button>
+      <button mat-button (click)="changeCurrentView('app-product-view')" [matMenuTriggerFor]="menuProduits">Historique</button>
       <mat-menu #menuProduits="matMenu">
         <button mat-menu-item>Nouveau</button>
         <button mat-menu-item>Item 2</button>
@@ -28,17 +28,18 @@
     </mat-sidenav>
 
     <mat-sidenav mode="side" class="right-sidenav" position="end" opened>
-        Pieces
         <app-product-view #productView ><!-- *ngIf="isCurrentView(PRODUCT_VIEW)" --></app-product-view>
     </mat-sidenav>
 
-    <mat-sidenav-content>Main content
-        <app-bill-view #billView *ngIf="isCurrentView(BILL_VIEW)" >
-          <!--  -->
-        </app-bill-view>
-        <!-- billView.name -->
-        <app-estimate-view #estimateView *ngIf="isCurrentView(ESTIMATE_VIEW)"></app-estimate-view>
-        
+    <mat-sidenav-content>
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Facture">
+                <app-bill-view #billView></app-bill-view>
+            </mat-tab>
+            <mat-tab label="Devis">
+                <app-estimate-view #estimateView></app-estimate-view>
+            </mat-tab>
+          </mat-tab-group>
     </mat-sidenav-content>
 
   </mat-sidenav-container>

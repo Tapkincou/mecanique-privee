@@ -19,6 +19,16 @@ $font-stack: Helvetica, sans-serif;
     left: 0;
     background: #eee;
     z-index: 1;
+    mat-sidenav-content {
+
+      mat-tab-group {
+        height:100%;
+       /* mat-tab{
+          width: 50%;
+        }*/
+      }
+    }
+
   }
 
   .left-sidenav {
@@ -38,3 +48,4 @@ $font-stack: Helvetica, sans-serif;
     bottom: 5%;
     z-index: 5;
   }
+

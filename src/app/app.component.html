@@ -33,8 +33,23 @@
 
     <mat-sidenav-content>
         <mat-tab-group mat-align-tabs="center">
+
+               
             <mat-tab label="Facture">
-                <app-bill-view #billView></app-bill-view>
+              <div 
+              cdkDropList
+              #billMakerList="cdkDropList"
+              [cdkDropListData]="billMaker"
+              
+              class="customer-list"
+              (cdkDropListDropped)="drop($event)">
+                <div class="customer-row" *ngFor="let test of billMaker" cdkDrag > 
+                  {{test.firstName}} {{test.lastName}}
+                  </div>
+              </div>
+               <!--  </div>
+                [cdkDropListConnectedTo]="[customerViewComponent.customerListData.data]"
+                <app-bill-view #billView></app-bill-view>cdkDrag [cdkDropListConnectedTo]="[allDropLists]"-->
             </mat-tab>
             <mat-tab label="Devis">
                 <app-estimate-view #estimateView></app-estimate-view>

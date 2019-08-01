@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { BillBusiness } from 'src/app/business/bill-business';
 import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { Bill } from 'src/app/business-object/bill';
 import { from } from 'rxjs';
 import { BillDO } from 'src/app/data-object/billDO';
 import { BillController } from 'src/app/controller/bill-controller';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Customer } from 'src/app/business-object/customer';
 @Component({
   selector: 'app-bill-view',
   templateUrl: './bill-view.component.html',
@@ -12,12 +14,15 @@ import { BillController } from 'src/app/controller/bill-controller';
 })
 export class BillViewComponent implements OnInit, OnDestroy {
 
-
+  @Input() allDropLists;
+  @Input() billMaker;
   public name = 'app-bill-view';
 
   private billController = new BillController('billdatabase');
   public billBusiness = new BillBusiness();
   private bills$: Observable<any>;
+  public customers: Customer[];
+
  // private initDatabase$: Observable<Boolean>;   Bill[]
 
   // Send the current state of the subject when it changes.
@@ -104,6 +109,17 @@ export class BillViewComponent implements OnInit, OnDestroy {
     });*/
   }
 
+
+  public drop(event: CdkDragDrop<Customer[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
 
   ngOnDestroy() {
     // this.test$.subscribe().unsubscribe();

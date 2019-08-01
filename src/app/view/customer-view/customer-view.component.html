@@ -1,21 +1,29 @@
 <div class="sidenav-title">
   Liste clients
 </div>
+                <!-- </div>#customerList="cdkDropList" --> 
 <div *ngIf="customers !== undefined" class="Array">
   
   <div
   cdkDropList
-  #customerList="cdkDropList"
+  #customerListData="cdkDropList"
   [cdkDropListData]="customers"
-  
+
   class="customer-list"
-  (cdkDropListDropped)="drop($event)"
-  > <!-- [cdkDropListConnectedTo]="[billMaker]" -->
+  (cdkDropListDropped)="drop($event)">
     <div class="customer-row" *ngFor="let customer of customers" cdkDrag>
       {{customer.firstName}} {{customer.lastName}}
     </div>
   </div>
 </div>
+
+ <!--     [cdkDropListConnectedTo]="[billMakerList]"#customerListData="cdkDropList"//  (cdkDropListDropped)="drop($event)"
+  cdkDropList
+  #customerList="cdkDropList"
+  [cdkDropListData]="billMaker"
+  [cdkDropListConnectedTo]="[customers]"
+  class="customer-list"
+  (cdkDropListDropped)="drop($event)" -->
 
 <div>
   <button mat-raised-button (click)="openDialog()" class="New-Customer-Button">Nouveau client</button>

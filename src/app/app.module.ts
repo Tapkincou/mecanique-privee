@@ -15,6 +15,7 @@ import { CustomerEditorComponent } from './customer-editor/customer-editor.compo
 import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { BillEditorComponent } from './bill-editor/bill-editor.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DragNDropService } from './services/drag-n-drop/drag-n-drop-service.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [DragNDropService],
   bootstrap: [AppComponent],
   // Needed for dialogs
   entryComponents: [CustomerEditorComponent]

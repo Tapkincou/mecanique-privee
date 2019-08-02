@@ -1,36 +1,71 @@
-import { Injectable } from '@angular/core';
-import { CdkDropList } from '@angular/cdk/drag-drop';
+import { Injectable, Inject, ComponentFactoryResolver } from '@angular/core';
+import { CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DragNDropService {
 
-  constructor() { }
-
   // All dropList used by the DragNDropService.
   private dropLists: CdkDropList[];
+  private dropListsIDs: string[];
+
+/*  factoryResolver: ComponentFactoryResolver;
+  rootViewContainer: any;
+
+  constructor(@Inject(ComponentFactoryResolver) factoryResolver) {
+    this.factoryResolver = factoryResolver;
+  }
+
+  setRootViewContainerRef(viewContainerRef) {
+    this.rootViewContainer = viewContainerRef;
+  }
+
+  addCdkDropList() {
+    const factory = this.factoryResolver
+                        .resolveComponentFactory(CdkDropList);
+    const component = factory
+      .create(this.rootViewContainer.parentInjector);
+    this.rootViewContainer.insert(component.hostView);
+  }
+
+
+  public addDropList(dropList: CdkDropList): void {
+    this.dropListsIDs.push(dropList.id);
+    this.dropLists.push(dropList);
+  }
+*/
 
   /**
-   *Add a new Droplist into the service
+   * Attach every DropLists to
    *
-   * @returns {boolean}
-   * @memberof DragNDropService
    */
-  public createDropList(): boolean {
-    return true;
+  public attachAllDropLists() { // dropList: CdkDropList, dropListToAttach: CdkDropList
+    this.dropLists.forEach(dropList => {
+      dropList.connectedTo = this.dropListsIDs;
+    });
+
   }
 
   /**
    *
    *
-   * @param {CdkDropList} dropList
-   * @param {CdkDropList} dropListToAttach
-   * @memberof DragNDropService
    */
-  public attachdropLists(dropList: CdkDropList, dropListToAttach: CdkDropList) {
+  public attachDropList(dropList: CdkDropList, dropListToAttach: CdkDropList) {
+      dropList.connectedTo = dropListToAttach;
+  }
 
 
+  public drop<T>(event: CdkDragDrop<T[]>) {
+    console.log(event.container.data);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
 }

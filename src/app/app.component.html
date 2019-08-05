@@ -42,7 +42,7 @@
               [cdkDropListData]="billMaker"
               
               class="customer-list"
-              (cdkDropListDropped)="drop($event)">
+              (cdkDropListDropped)="dropCustomer($event)">
                 <div class="customer-row" *ngFor="let test of billMaker" cdkDrag > 
                   {{test.firstName}} {{test.lastName}}
                   </div>

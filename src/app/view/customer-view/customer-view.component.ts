@@ -17,7 +17,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList } from '@a
   templateUrl: './customer-view.component.html',
   styleUrls: ['./customer-view.component.scss']
 })
-export class CustomerViewComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CustomerViewComponent implements OnInit, OnDestroy {
   @ViewChild('customerListData') customerListData: CdkDropList;
   name = 'app-customer-view';
   private customerBusiness: CustomerBusiness;
@@ -25,22 +25,7 @@ export class CustomerViewComponent implements OnInit, OnDestroy, AfterViewInit {
   private customerSubject: BehaviorSubject<Array<Customer>>;
   public customers: Array<Customer>;
 
-  // @Input() allDropLists;
-  // @Input() billMaker: Customer[]; // billMakerList
-  @Input() billMakerList: CdkDropList; //////////////////////
-
-/*
-  @ViewChild('billMaker')
-  public billMaker = [new Customer('1', 'testfisrtname', 'testlastname', null, null, null, null, null),
-  new Customer('2', 'testfisrtname2', 'testlastname2', null, null, null, null, null)];
-*/
   constructor(private dialog: MatDialog) {}
-
-  ngAfterViewInit() {
-    this.customerListData.connectedTo = this.billMakerList;
-    console.log('ICIIIIII');
-    console.log(this.billMakerList);
-  }
 
   whoAmI() {
     console.log('👶 I am a child!!');
@@ -79,18 +64,6 @@ export class CustomerViewComponent implements OnInit, OnDestroy, AfterViewInit {
       this.customerBusiness.createCustomers(this.customerBusiness.customerFOtoBO(result));
       console.log(result);
     });
-  }
-
-  public drop(event: CdkDragDrop<Customer[]>) {
-    // console.log(event.container.data);
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
   }
 
   ngOnDestroy() {

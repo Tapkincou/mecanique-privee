@@ -1,5 +1,5 @@
 import { Injectable, Inject, ComponentFactoryResolver } from '@angular/core';
-import { CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem, copyArrayItem } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
@@ -55,17 +55,35 @@ export class DragNDropService {
       dropList.connectedTo = dropListToAttach;
   }
 
-
+  /**
+   *
+   *
+   */
   public drop<T>(event: CdkDragDrop<T[]>) {
-    console.log(event.container.data);
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+      console.log(event.container.data);
+
+      if (event.previousContainer === event.container) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(event.previousContainer.data,
+                          event.container.data,
+                          event.previousIndex,
+                          event.currentIndex);
+      }
     }
-  }
+
+    public dropWithoutRemove<T>(event: CdkDragDrop<T[]>) {
+      console.log(event.container.data);
+
+      // If item dragged on the same list.
+      if (event.previousContainer === event.container) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        copyArrayItem(event.previousContainer.data,
+                          event.container.data,
+                          event.previousIndex,
+                          event.currentIndex);
+      }
+    }
 
 }

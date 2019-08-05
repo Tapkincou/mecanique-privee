@@ -6,6 +6,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList } from '@a
 import { Customer } from './business-object/customer';
 import { CustomerViewComponent } from './view/customer-view/customer-view.component';
 import { BehaviorSubject } from 'rxjs';
+import { DragNDropService } from './services/drag-n-drop/drag-n-drop-service.service';
+import { NullInjector } from '@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +28,10 @@ export class AppComponent implements AfterViewInit {
   @ViewChild(CustomerViewComponent) customerViewComponent: CustomerViewComponent;
   @ViewChild('billMakerList') public billMakerList: CdkDropList;
 //  @ViewChild('billMaker')
-  public billMaker = [new Customer('3', 'testfisrtname3', 'testlastname3', null, null, null, null, null),
-  new Customer('42', 'testfisrtname4', 'testlastname4', null, null, null, null, null)];
+  public billMaker: Customer[] = [];
+
+  /*[new Customer('3', 'testfisrtname3', 'testlastname3', null, null, null, null, null),
+  new Customer('42', 'testfisrtname4', 'testlastname4', null, null, null, null, null)];*/
 
   public allDropLists = [ 'customers', 'billMaker'];
 
@@ -35,20 +39,22 @@ export class AppComponent implements AfterViewInit {
 
     this.customerViewComponent.whoAmI();
     this.billMakerList.connectedTo = this.customerViewComponent.customerListData;
+    this.customerViewComponent.customerListData.connectedTo = this.billMakerList;
     console.log(this.billMakerList);
   }
 
   /*@ViewChild(CustomerViewComponent)
   private dropSubject: BehaviorSubject<CdkDragDrop<Array<Customer>>>;
 */
-  constructor (public viewContainerRef: ViewContainerRef) {
+  constructor (public viewContainerRef: ViewContainerRef, public dragNDropService: DragNDropService) {
 
 
     this.currentView = this.BILL_VIEW; // CUSTOMER_VIEW
-
   }
 
   public changeCurrentView(view: string) {
+
+
     // console.log('changeCurrentView called : ' + view + ' / current =' + this.currentView);
       if (this.currentView !== view) {
         this.currentView = view;
@@ -63,17 +69,13 @@ export class AppComponent implements AfterViewInit {
 
   public getCurrentView = () => this.currentView;
 
+  public dropCustomer(event: CdkDragDrop<Customer[]>) {
 
-  public drop(event: CdkDragDrop<Customer[]>) {
-    console.log(event.container.data);
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+    if ( this.billMaker.length > 0 ) {
+      this.billMaker.length = 0;
     }
-  }
+  // Only one value in billMaker array
+    this.dragNDropService.dropWithoutRemove<Customer>(event);
 
+  }
 }

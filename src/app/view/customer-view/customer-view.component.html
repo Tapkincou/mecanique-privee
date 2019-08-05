@@ -8,9 +8,7 @@
   cdkDropList
   #customerListData="cdkDropList"
   [cdkDropListData]="customers"
-
-  class="customer-list"
-  (cdkDropListDropped)="drop($event)">
+  class="customer-list">
     <div class="customer-row" *ngFor="let customer of customers" cdkDrag>
       {{customer.firstName}} {{customer.lastName}}
     </div>

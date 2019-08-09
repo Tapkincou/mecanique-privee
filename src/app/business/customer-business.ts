@@ -70,7 +70,8 @@ export class CustomerBusiness {
 
     }
 
-    public customerFOtoBO(customerFO: {firstName: string, lastName: string, address: string, email: EmailValidator, phoneNumber: string}): Customer{
+    public customerFOtoBO(customerFO: {firstName: string, lastName: string, address: string, email: EmailValidator,
+        phoneNumber: string}): Customer {
 
         /** Into CustomerFO, default doc._id = null */
         console.log('CustomerFOtoBO');

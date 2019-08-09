@@ -29,14 +29,18 @@ public updateProducts() {
 
 private productDOtoBO(productDO: ProductDO): Product {
 
-  /** Into ProductDO, default doc._id = null */
-  console.log('ProductDOtoBO');
-  console.log(new Product(productDO.doc));
-  const product = new Product(productDO.doc); // customerDO.getDoc();
+
+ // console.log(new Product().DOtoBO(productDO.doc));
+ // const product = new Product().DOtoBO(productDO.doc); // customerDO.getDoc();
  // customer.set_id(customerDO.get_id());
-  return product;
-
-
+  return null;
+  /*return Product.newProduct()
+              /** Into ProductDO, default doc._id = null */
+             /* .setName(productDO.doc.name)
+              .setCost(productDO.doc.cost)
+              .setType(productDO.doc.type)
+              .build();
+*/
 }
 
   public getProductById(id: number) {

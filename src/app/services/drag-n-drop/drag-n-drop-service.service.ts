@@ -10,31 +10,6 @@ export class DragNDropService {
   private dropLists: CdkDropList[];
   private dropListsIDs: string[];
 
-/*  factoryResolver: ComponentFactoryResolver;
-  rootViewContainer: any;
-
-  constructor(@Inject(ComponentFactoryResolver) factoryResolver) {
-    this.factoryResolver = factoryResolver;
-  }
-
-  setRootViewContainerRef(viewContainerRef) {
-    this.rootViewContainer = viewContainerRef;
-  }
-
-  addCdkDropList() {
-    const factory = this.factoryResolver
-                        .resolveComponentFactory(CdkDropList);
-    const component = factory
-      .create(this.rootViewContainer.parentInjector);
-    this.rootViewContainer.insert(component.hostView);
-  }
-
-
-  public addDropList(dropList: CdkDropList): void {
-    this.dropListsIDs.push(dropList.id);
-    this.dropLists.push(dropList);
-  }
-*/
 
   /**
    * Attach every DropLists to
@@ -48,16 +23,21 @@ export class DragNDropService {
   }
 
   /**
-   *
-   *
+   * Link a drop list to another one.
    */
   public attachDropList(dropList: CdkDropList, dropListToAttach: CdkDropList) {
       dropList.connectedTo = dropListToAttach;
   }
 
   /**
-   *
-   *
+   * Link two drop lists together.
+   */
+  public attachDropListOnBothSide(dropList: CdkDropList, dropListToAttach: CdkDropList) {
+    this.attachDropList(dropList, dropListToAttach);
+    this.attachDropList(dropListToAttach, dropList);
+  }
+  /**
+   * Call this function to process the drop of a dragged item from one place to another.
    */
   public drop<T>(event: CdkDragDrop<T[]>) {
       console.log(event.container.data);
@@ -72,6 +52,9 @@ export class DragNDropService {
       }
     }
 
+  /**
+   * Call this function to process a drop that copy the dragged item instead of just move it up.
+   */
     public dropWithoutRemove<T>(event: CdkDragDrop<T[]>) {
       console.log(event.container.data);
 

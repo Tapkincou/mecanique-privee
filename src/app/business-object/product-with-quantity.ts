@@ -9,4 +9,5 @@ export class ProductWithQuantity {
     }
     private product: Product;
     private quantity: number;
+
   }

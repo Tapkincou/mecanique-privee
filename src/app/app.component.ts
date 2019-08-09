@@ -8,6 +8,8 @@ import { CustomerViewComponent } from './view/customer-view/customer-view.compon
 import { BehaviorSubject } from 'rxjs';
 import { DragNDropService } from './services/drag-n-drop/drag-n-drop-service.service';
 import { NullInjector } from '@angular/core/src/di/injector';
+import { ProductViewComponent } from './view/product-view/product-view.component';
+import { Product } from './business-object/product';
 
 @Component({
   selector: 'app-root',
@@ -26,21 +28,20 @@ export class AppComponent implements AfterViewInit {
   private currentView;
   // @ViewChild('customerListData') customerListData: ElementRef;
   @ViewChild(CustomerViewComponent) customerViewComponent: CustomerViewComponent;
+  @ViewChild(ProductViewComponent) productViewComponent: ProductViewComponent;
   @ViewChild('billMakerList') public billMakerList: CdkDropList;
 //  @ViewChild('billMaker')
-  public billMaker: Customer[] = [];
+  public billMaker: Product[] = [];
 
   /*[new Customer('3', 'testfisrtname3', 'testlastname3', null, null, null, null, null),
   new Customer('42', 'testfisrtname4', 'testlastname4', null, null, null, null, null)];*/
 
-  public allDropLists = [ 'customers', 'billMaker'];
 
   ngAfterViewInit() {
 
-    this.customerViewComponent.whoAmI();
-    this.billMakerList.connectedTo = this.customerViewComponent.customerListData;
-    this.customerViewComponent.customerListData.connectedTo = this.billMakerList;
-    console.log(this.billMakerList);
+    // this.dragNDropService.attachDropListOnBothSide(this.billMakerList, this.customerViewComponent.customerListData);
+    this.dragNDropService.attachDropListOnBothSide(this.billMakerList, this.productViewComponent.productListData);
+
   }
 
   /*@ViewChild(CustomerViewComponent)
@@ -48,9 +49,10 @@ export class AppComponent implements AfterViewInit {
 */
   constructor (public viewContainerRef: ViewContainerRef, public dragNDropService: DragNDropService) {
 
-
     this.currentView = this.BILL_VIEW; // CUSTOMER_VIEW
   }
+
+  public removeItem = (list: [], element: never) => list.splice(list.indexOf(element));
 
   public changeCurrentView(view: string) {
 
@@ -71,11 +73,14 @@ export class AppComponent implements AfterViewInit {
 
   public dropCustomer(event: CdkDragDrop<Customer[]>) {
 
-    if ( this.billMaker.length > 0 ) {
+    if ( event.container.data.length > 0 ) {
       this.billMaker.length = 0;
     }
   // Only one value in billMaker array
     this.dragNDropService.dropWithoutRemove<Customer>(event);
 
   }
+
+  public dropProduct = (event: CdkDragDrop<Product[]>) => this.dragNDropService.dropWithoutRemove<Product>(event);
+
 }

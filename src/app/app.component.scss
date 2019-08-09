@@ -50,8 +50,8 @@ $font-stack: Helvetica, sans-serif;
   }
 
   .customer-list {
-
-
+      min-height: 500px; 
+      width:100%;
     .customer-row {
         z-index:999;
         padding: 20px 10px;

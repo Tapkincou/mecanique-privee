@@ -17,7 +17,7 @@ export class ProductController extends Database {
    * @param id: id of the product.
    */
   public selectProductById(id: number) {
-    return new Product(this.bouchonSelectProductById());
+    return this.bouchonSelectProductById();
     // TODO
   }
 

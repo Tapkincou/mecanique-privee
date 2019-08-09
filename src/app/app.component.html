@@ -42,12 +42,20 @@
               [cdkDropListData]="billMaker"
               
               class="customer-list"
-              (cdkDropListDropped)="dropCustomer($event)">
+              (cdkDropListDropped)="dropProduct($event)">
+
+              <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip class="customer-row" *ngFor="let test of billMaker" [selectable]="selectable"
+                          [removable]="removable" (removed)="removeItem(billMaker, test)" cdkDrag>
+                          {{test.cost}} {{test.name}}
+                    <mat-icon matChipRemove >cancel</mat-icon> 
+                  </mat-chip>
+                </mat-chip-list>
                 <div class="customer-row" *ngFor="let test of billMaker" cdkDrag > 
-                  {{test.firstName}} {{test.lastName}}
+                  {{test._name}} {{test._cost}}
                   </div>
               </div>
-               <!--  </div>
+               <!--  *ngIf="removable" </div>
                 [cdkDropListConnectedTo]="[customerViewComponent.customerListData.data]"
                 <app-bill-view #billView></app-bill-view>cdkDrag [cdkDropListConnectedTo]="[allDropLists]"-->
             </mat-tab>

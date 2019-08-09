@@ -27,11 +27,6 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
 
   constructor(private dialog: MatDialog) {}
 
-  whoAmI() {
-    console.log('👶 I am a child!!');
-
-  }
-
   ngOnInit() {
    // console.log(this.customerListData.nativeElement);
     this.customerBusiness = new CustomerBusiness();

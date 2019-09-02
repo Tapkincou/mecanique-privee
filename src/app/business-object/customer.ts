@@ -3,14 +3,14 @@ import { EmailValidator } from '@angular/forms';
 export class Customer {
 
   private _id: string;
-  private firstName: string;
-  private lastName: string;
-  private city: string;
-  private address: string;
-  private postal: number;
-  private phoneNumber: string;
-  private email: EmailValidator;
-
+  private _firstName: string;
+  private _lastName: string;
+  private _city: string;
+  private _address: string;
+  private _postal: number;
+  private _phoneNumber: string;
+  private _email: EmailValidator;
+/*
   constructor(_id: string = '', firstName: string = '', lastName: string = '', city: string = ''
   , address: string = '', postal: number = null, phoneNumber: string = '', email: EmailValidator = null) {
 
@@ -22,80 +22,148 @@ export class Customer {
     this.postal = postal;
     this.phoneNumber = phoneNumber;
     this.email = email;
+  }*/
+
+  public constructor(customerBuilder: CustomerBuilder) {
+    this._id = customerBuilder.id;
+    this._firstName = customerBuilder.firstName;
+    this._lastName = customerBuilder.lastName;
+    this._city = customerBuilder.city;
   }
 
-  public DOtoBO(customer: Customer) {
-    this._id = customer._id;
-    this.firstName = customer.firstName;
-    this.lastName = customer.lastName;
-    this.city = customer.city;
-    this.address = customer.address;
-    this.postal = customer.postal;
-    this.phoneNumber = customer.phoneNumber;
-    this.email = customer.email;
-    return this;
+  public static newCustomer(): CustomerBuilder {
+    return new CustomerBuilder();
   }
 
-  public get_id() {
+  // peut-etre va falloir cree une classe dediee CustomerDO ?
+  public static DOtoBO(customer: Customer): Customer {
+    return this.newCustomer().setId(customer.id)
+                      .setFirstName(customer.firstName)
+                      .setLastName(customer.lastName)
+                      .setCity(customer.city)
+                      .build();
+  /*  this._id = customer._id;
+    this._firstName = customer._firstName;
+    this._lastName = customer._lastName;
+    this._city = customer._city;
+    this._address = customer._address;
+    this._postal = customer._postal;
+    this._phoneNumber = customer._phoneNumber;
+    this._email = customer._email;
+    return this;*/
+  }
+
+  get id(): string {
     return this._id;
   }
 
-  public set_id(_id: string) {
-    this._id = _id;
+  set id (id: string) {
+    this._id = id;
   }
 
-  public getFirstName() {
-    return this.firstName;
+  public get firstName() {
+    return this._firstName;
   }
-  public setFirstName(firstName: string) {
-    this.firstName = firstName;
-  }
-
-  public getLastName() {
-    return this.lastName;
+  public set firstName(firstName: string) {
+    this._firstName = firstName;
   }
 
-  public setLastName(lastName: string) {
-    this.lastName = lastName;
+  public get lastName() {
+    return this._lastName;
   }
 
-  public getAddress() {
-    return this.address;
+  public set lastName(lastName: string) {
+    this._lastName = lastName;
   }
 
-  public setAddress(address: string) {
-    this.address = address;
+  public get address() {
+    return this._address;
   }
 
-  public getPhoneNumber() {
-    return this.phoneNumber;
+  public set address(address: string) {
+    this._address = address;
   }
 
-  public setPhoneNumber(phoneNumber: string) {
-    this.phoneNumber = phoneNumber;
+  public get phoneNumber() {
+    return this._phoneNumber;
   }
 
-  public getPostal() {
-    return this.postal;
+  public set phoneNumber(phoneNumber: string) {
+    this._phoneNumber = phoneNumber;
   }
 
-  public setPostal(postal: number) {
-    this.postal = postal;
+  public get postal() {
+    return this._postal;
   }
 
-  public getCity() {
-    return this.city;
+  public set postal(postal: number) {
+    this._postal = postal;
   }
 
-  public setCity(city: string) {
-    this.city = city;
+  public get city() {
+    return this._city;
   }
 
-  public getEmail() {
-    return this.email;
+  public set city(city: string) {
+    this._city = city;
   }
 
-  public setEmail(email: EmailValidator) {
-    this.email = email;
+  public get email() {
+    return this._email;
   }
+
+  public set email(email: EmailValidator) {
+    this._email = email;
+  }
+}
+
+class CustomerBuilder {
+  private _id: string = null;
+  private _firstName: string = null;
+  private _lastName: string = null;
+  private _city: string = null;
+
+  public constructor() { console.log('on cree 1'); }
+
+  /** Call this method to create the new Product Object */
+  public build(): Customer {
+    return new Customer(this);
+  }
+
+  setId(id: string): CustomerBuilder {
+    this._id = id;
+    return this;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  setFirstName(firstName: string): CustomerBuilder {
+    this._firstName = firstName;
+    return this;
+  }
+
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  setLastName(lastName: string): CustomerBuilder {
+    this._lastName = lastName;
+    return this;
+  }
+
+  get lastName(): string {
+    return this._lastName;
+  }
+
+  setCity(city: string): CustomerBuilder {
+    this._city = city;
+    return this;
+  }
+
+  get city(): string {
+    return this._city;
+  }
+
 }

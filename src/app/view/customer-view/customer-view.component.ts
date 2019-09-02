@@ -35,8 +35,18 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
     this.customerBusiness.updateCustomers();
     console.log('init ' + name);
     this.customers$.subscribe( (customers) => {
-      this.customers = [new Customer('1', 'testfisrtname', 'testlastname', null, null, null, null, null),
-      new Customer('2', 'testfisrtname2', 'testlastname2', null, null, null, null, null)]; //  customers;
+      this.customers = [Customer.newCustomer()
+                          .setId('1')
+                          .setFirstName('testfisrtname')
+                          .setLastName('testLastName')
+                          .setCity('testCity')
+                          .build(),
+                          Customer.newCustomer()
+                          .setId('2')
+                          .setFirstName('fisrtname2')
+                          .setLastName('LastName2')
+                          .setCity('City2')
+                          .build()]; //  customers;
       console.log('customers::');
       console.log(customers);
     });

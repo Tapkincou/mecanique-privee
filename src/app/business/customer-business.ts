@@ -23,8 +23,8 @@ export class CustomerBusiness {
 
 
     public createCustomers(customerBO: Customer) {
-        if (customerBO.get_id !== null) {
-            customerBO.set_id(v4().toString());
+        if (customerBO.id !== null) {
+            customerBO.id = v4().toString();
         }
         console.log(this.customerController.putDocument(customerBO));
     }
@@ -50,8 +50,8 @@ export class CustomerBusiness {
 
         /** Into CustomerDO, default doc._id = null */
         console.log('CustomerDOtoBO');
-        console.log(new Customer().DOtoBO(customerDO.doc));
-        const customer = new Customer().DOtoBO(customerDO.doc); // customerDO.getDoc();
+        console.log(Customer.DOtoBO(customerDO.doc));
+        const customer = Customer.DOtoBO(customerDO.doc); // customerDO.getDoc();
        // customer.set_id(customerDO.get_id());
         return customer;
 
@@ -62,8 +62,8 @@ export class CustomerBusiness {
 
         /** Into CustomerDO, default doc._id = null */
         console.log('CustomerDOtoBO');
-        console.log(new Customer().DOtoBO(customerDO.doc));
-        const customer = new Customer().DOtoBO(customerDO.doc); // customerDO.getDoc();
+        console.log(Customer.DOtoBO(customerDO.doc));
+        const customer = Customer.DOtoBO(customerDO.doc); // customerDO.getDoc();
        // customer.set_id(customerDO.get_id());
         return customer;
 
@@ -75,14 +75,16 @@ export class CustomerBusiness {
 
         /** Into CustomerFO, default doc._id = null */
         console.log('CustomerFOtoBO');
-        const customer = new Customer();
-        customer.setFirstName(customerFO.firstName);
-        customer.setLastName(customerFO.lastName);
-        customer.setAddress(customerFO.address);
-        // customer.setEmail(customerFO.email);
-        customer.setPhoneNumber(customerFO.phoneNumber);
-        customer.set_id(null);
-        return customer;
+        return Customer.newCustomer()
+            // .setId(null)
+            .setFirstName(customerFO.firstName)
+            .setLastName(customerFO.lastName)
+            // .setAddress(customerFO.address)
+            // .setEmail(customerFO.email);
+            // .setCity(customerFO.city);
+            // .setPhoneNumber(customerFO.phoneNumber);
+            .build();
+
 
     }
     /**

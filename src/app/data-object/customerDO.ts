@@ -13,8 +13,8 @@ export class CustomerDO {
     id: string,
     rev: string
   }) {
-    this.doc.setFirstName(dataObject.doc.firstName);
-    this.doc.setLastName(dataObject.doc.lastName);
+    this.doc.firstName = dataObject.doc.firstName;
+    this.doc.lastName = dataObject.doc.lastName;
 
   }
 

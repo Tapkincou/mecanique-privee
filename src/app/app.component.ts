@@ -52,7 +52,15 @@ export class AppComponent implements AfterViewInit {
     this.currentView = this.BILL_VIEW; // CUSTOMER_VIEW
   }
 
-  public removeItem = (list: [], element: never) => list.splice(list.indexOf(element));
+  public remove(product: Product): void {
+    const index = this.billMaker.indexOf(product);
+
+    if (index >= 0) {
+      this.billMaker.splice(index, 1);
+    }
+  }
+
+
 
   public changeCurrentView(view: string) {
 

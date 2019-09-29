@@ -46,14 +46,15 @@
 
               <mat-chip-list #chipList aria-label="Fruit selection">
                   <mat-chip class="customer-row" *ngFor="let test of billMaker" [selectable]="selectable"
-                          [removable]="removable" (removed)="removeItem(billMaker, test)" cdkDrag>
+                          [removable]="true" (removed)="remove(test)">
                           {{test.cost}} {{test.name}}
-                    <mat-icon matChipRemove >cancel</mat-icon> 
+                          <mat-icon matChipRemove >cancel</mat-icon>
+                          
                   </mat-chip>
                 </mat-chip-list>
-                <div class="customer-row" *ngFor="let test of billMaker" cdkDrag > 
+                <!--<div class="customer-row" *ngFor="let test of billMaker" cdkDrag > 
                   {{test._name}} {{test._cost}}
-                  </div>
+                  </div>-->
               </div>
                <!--  *ngIf="removable" </div>
                 [cdkDropListConnectedTo]="[customerViewComponent.customerListData.data]"

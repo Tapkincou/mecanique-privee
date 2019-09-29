@@ -16,7 +16,7 @@ import { ProductEditorComponent } from './product-editor/product-editor.componen
 import { BillEditorComponent } from './bill-editor/bill-editor.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DragNDropService } from './services/drag-n-drop/drag-n-drop-service.service';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
